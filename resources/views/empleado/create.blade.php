@@ -7,10 +7,11 @@ la ruta es importante porque indica al formulario la ruta a la que se envía en 
 
     <form action="{{  url('/empleado') }}" method="post" enctype="multipart/form-data">
         @csrf<!-- se manda un token de seguridad -->
-
+        <input type="hidden" name="Estado" value="1"></input><!-- ESTO ES PARA QUE POR DEFECTO SE CREE UN EMPLEADO CON ESTADO ACTIVO -->
         @include('empleado.form',['modo'=>'Crear'])<!-- se incluyen los datos del formulario y se define un modo -->
 
     </form>
 </div>
 
 @endsection
+

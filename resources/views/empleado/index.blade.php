@@ -20,27 +20,30 @@
 
         <tbody>
             @foreach( $empleados as $empleado)
-            <tr>
-                <!-- <td>{{ $empleado->id }}</td>  -->
+                @if($empleado->Estado)<!-- SOLO SE MUESTRAN LOS EMPLEADOS CON ESTADO ACTIVO -->
+                    <tr>
+                        <!-- <td>{{ $empleado->id }}</td>  -->
 
-                <td>
-                <img src="{{ asset('storage'.'/'.$empleado->Foto) }}" width="100" alt="">
-                </td>
+                        <td>
+                        <img src="{{ asset('storage'.'/'.$empleado->Foto) }}" width="100" alt="">
+                        </td>
 
-                <td>{{ $empleado->Nombre }} {{ $empleado->ApellidoPaterno }} {{ $empleado->ApellidoMaterno }}</td>
-                <td>{{ $empleado->Correo }}</td>
-                <td>
-                    <!-- Se accede al método edit de EmpleadoController -->
-                    <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-warning"> Editar </a>
-                    | 
-                    <!-- Se accede al método destroy de Empleado.controller -->
-                    <form action="{{ '/sistema/public/empleado/'.$empleado->id }}" class="d-inline" method="post">
-                        @csrf
-                        {{ method_field('DELETE') }}
-                        <input type="submit" onclick="return confirm(¿Quieres borrar?)" class="btn btn-danger" value="Borrar">
-                    </form>
-                </td>
-            </tr>
+                        <td>{{ $empleado->Nombre }} {{ $empleado->ApellidoPaterno }} {{ $empleado->ApellidoMaterno }}</td>
+                        <td>{{ $empleado->Correo }}</td>
+                        <td>
+                            <!-- Se accede al método edit de EmpleadoController -->
+                            <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-warning"> Editar </a>
+                            | 
+                            <!-- Se accede al método destroy de Empleado.controller -->
+                            <form action="{{ '/sistema/public/empleado/'.$empleado->id }}" class="d-inline" method="post">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <input type="hidden" name="Estado" value="0"></input><!-- ESTO ES PARA CAMBIAR EL ESTADO DEL EMPLEADO A INACTIVO -->
+                                <input type="submit" onclick="return confirm(¿Quieres borrar?)" class="btn btn-danger" value="Borrar">
+                            </form>
+                        </td>
+                    </tr>
+                @endif
             @endforeach
         </tbody>
 

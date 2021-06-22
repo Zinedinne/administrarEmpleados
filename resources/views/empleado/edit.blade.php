@@ -10,7 +10,7 @@
         
         {{ method_field('PATCH') }} <!-- como se van a actualizar datos es necesario que se envíen con un método PATCH -->
         
-        @include('empleado.form',['modo'=>'Editar']<!-- se incluyen los datos del formulario y se define un modo -->
+        @include('empleado.form',['modo'=>'Editar'])<!-- se incluyen los datos del formulario y se define un modo -->
     </form>
 
 </div>

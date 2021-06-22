@@ -142,15 +142,36 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
+
+      
+     /*ESTA FUNCION BORRA DIRECTAMENTE DE LA BASE DE DATOS
     public function destroy($id)
     {
         //Dentro de la tabla correspondiente a la tabla empleado se busca el id que coincida y se almacena en empleado
         $empleado=Empleado::findOrFail($id);
+         
         //si es posible eliminar del storage la foro correspondiente al registro entonces elimina el registro
         if(Storage::delete('public/'.$empleado->Foto)){
             Empleado::destroy($id);
             }
+            
+        
+
+
         //regresa a la vista empleado que por defecto muestra el index
         return redirect('empleado');
+    }
+    */
+
+    //EN VEZ DE BORRAR DIRECTAMENTE DE LA BASE DE DATOS SE CAMBIA SU ESTADO A INACTIVO
+    public function destroy(Request $request, $id)
+    {
+        //Se almacenan los datos del reques en $datos empleado sin incluir el token del @csrf ni el método que es PATCH
+        $datosEmpleado = request()->except(['_token','_method']);
+        //Se actualizan los campos en la base de datos
+        Empleado::where('id','=',$id)->update($datosEmpleado);
+        //regresa a la vista empleado que por defecto muestra el index
+        return redirect('empleado');
+    
     }
 }
