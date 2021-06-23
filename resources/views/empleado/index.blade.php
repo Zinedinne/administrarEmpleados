@@ -31,6 +31,9 @@
                         <td>{{ $empleado->Nombre }} {{ $empleado->ApellidoPaterno }} {{ $empleado->ApellidoMaterno }}</td>
                         <td>{{ $empleado->Correo }}</td>
                         <td>
+                            <!-- Se accede al método show de EmpleadoController -->
+                            <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-primary"> Ver </a>
+                            |
                             <!-- Se accede al método edit de EmpleadoController -->
                             <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-warning"> Editar </a>
                             | 
@@ -49,9 +52,11 @@
 
     </table>
 
-
-    {!! $empleados->links() !!} <!-- esta línea es para el paginate definido en el controlador -->
-
+    <div class="container"><!-- contenedor para alinear el paginador -->
+        <div class="row justify-content-center">
+            {!! $empleados->links() !!} <!-- esta línea es para el paginate definido en el controlador -->
+        </div>
+    </div>
 
 </div>
 

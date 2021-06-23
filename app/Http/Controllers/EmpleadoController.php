@@ -73,6 +73,7 @@ class EmpleadoController extends Controller
 
         //Ya validados los datos, se crea un arreglo con los datos del request, excluyendo al token que genera el @csrf
         $datosEmpleado = request()->except('_token');
+        $datosEmpleado['created_at']=now();
 
         //Si en el request hay un campo Foto se va a almacenar en la dirección /public/uploads del Storage de la app
         if($request->hasFile('Foto')){
