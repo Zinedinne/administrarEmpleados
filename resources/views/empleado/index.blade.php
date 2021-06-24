@@ -32,7 +32,11 @@
                         <td>{{ $empleado->Correo }}</td>
                         <td>
                             <!-- Se accede al método show de EmpleadoController -->
-                            <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-primary"> Ver </a>
+                            <form action="{{ '/sistema/public/empleado/'.$empleado->id }}" class="d-inline" method="post">
+                                @csrf
+                                {{ method_field('GET') }}
+                                <input type="submit" onclick="return confirm(¿Quieres borrar?)" class="btn btn-primary" value="Ver">
+                            </form>
                             |
                             <!-- Se accede al método edit de EmpleadoController -->
                             <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-warning"> Editar </a>

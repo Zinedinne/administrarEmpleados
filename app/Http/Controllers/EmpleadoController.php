@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Schema;
 
 class EmpleadoController extends Controller
 {
@@ -93,9 +94,11 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(Empleado $empleado)
+    public function show($id)
     {
         //
+        $empleado=Empleado::findOrFail($id);
+        return view('empleado.watch', compact('empleado'));//se muestran los datos actualizados
     }
 
     /**
