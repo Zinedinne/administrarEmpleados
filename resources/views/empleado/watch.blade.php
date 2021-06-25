@@ -12,7 +12,7 @@
     <!-- se crea una tabla para mostrar los datos de los registros -->
     <div class="container">
         <div class="container">
-            <div class="container">
+            <div class="container">  <!-- Estos div son para reducir el tamaño de la tabla que se muestra -->
                 <div class="container row col-xs-6 text-center">
                     <table class="table table-light">
                         <thead class="thead-light">

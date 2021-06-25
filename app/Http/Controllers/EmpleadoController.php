@@ -98,7 +98,7 @@ class EmpleadoController extends Controller
     {
         //
         $empleado=Empleado::findOrFail($id);
-        return view('empleado.watch', compact('empleado'));//se muestran los datos actualizados
+        return view('empleado.watch', compact('empleado'));//se retorna la vista y los datos que va a mostrar
     }
 
     /**
