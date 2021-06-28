@@ -5,7 +5,7 @@
     <div class="container">
         <form action="{{  url('/puesto')  }}" method="post">
             @csrf<!-- se manda un token de seguridad -->
-            <input type="hidden" name="Estado" value="1"></input><!-- ESTO ES PARA QUE POR DEFECTO SE CREE UN AREA CON ESTADO ACTIVO -->
+            <input type="hidden" name="Estado" value="1"></input><!-- ESTO ES PARA QUE POR DEFECTO SE CREE UN PUESTO CON ESTADO ACTIVO -->
             <div class="form-group">
                 <label for="Nombre">Nombre para nuevo puesto</label>
                 <input type="text" name="Nombre" class="form-control" id="Nombre">

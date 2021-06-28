@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use Illuminate\Http\Request;
+use App\Models\Puesto;
 
 class AreaController extends Controller
 {
@@ -16,8 +17,9 @@ class AreaController extends Controller
     {
         //
         //
-    $datos['areas']=Area::all();
-    return view('area.index',compact('datos'));
+    $datosPuesto['puestos']=Puesto::all();
+    $datosArea['areas']=Area::all();
+    return view('area.index',compact('datosArea','datosPuesto'));
     }
 
     /**

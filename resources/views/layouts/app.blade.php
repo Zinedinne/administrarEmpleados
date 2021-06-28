@@ -35,11 +35,15 @@
                     <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ route('empleado.index') }}">{{ __('empleado') }}</a>
+                    <a class="nav-link" href="{{ route('empleado.index') }}">
+                        Empleado
+                    </a>
 
                     </li>
                     <li class="nav-item"> <!--ESTE ENLACE DEBE REDIRECCIONAR A LA VISTA DE AREAS_PUESTOS-->
-                    <a class="nav-link" href="{{ route('area.index') }}">{{ __('areas') }}</a>
+                        <a class="nav-link" href="{{ route('area.index') }}">
+                            Áreas
+                        </a>
 
                     </li>
 
