@@ -68,9 +68,13 @@ class AreaController extends Controller
      * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function edit(Area $area)
+    public function edit($id)
     {
         //
+        //Se busca en la tabla correspondiente a la clase puesto el id correspondiente y se almacena en $puesto
+        $area=Area::findOrFail($id);
+        //Se redirecciona a la vista edit de la carpeta puesto y se le pasan los datos recopilados con la linea anterior
+        return view('area.edit', compact('area'));
     }
 
     /**
@@ -80,19 +84,29 @@ class AreaController extends Controller
      * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Area $area)
+    public function update(Request $request, $id)
     {
         //
+        //Se almacenan los datos del request en $datos empleado sin incluir el token del @csrf ni el método que es PATCH
+        $datosArea = request()->except(['_token','_method']);
+        Area::where('id','=',$id)->update($datosArea);
+        //regresa a la vista empleado que por defecto muestra el index
+        return redirect('area');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Cambia el estado de 1(activo) a 0(inactivo) para simular su borrado, los datos siguen disponibles en la base de datos
      *
      * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Area $area)
+    public function destroy(Request $request, $id)
     {
         //
+        //Se almacenan los datos del request en $datos empleado sin incluir el token del @csrf ni el método que es PATCH
+        $datosArea = request()->except(['_token','_method']);
+        Area::where('id','=',$id)->update($datosArea);
+        //regresa a la vista empleado que por defecto muestra el index
+        return redirect('area');
     }
 }

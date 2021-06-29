@@ -60,9 +60,13 @@ class PuestoController extends Controller
      * @param  \App\Models\Puesto  $puesto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Puesto $puesto)
+    public function edit($id)
     {
         //
+        //Se busca en la tabla correspondiente a la clase puesto el id correspondiente y se almacena en $puesto
+        $puesto=Puesto::findOrFail($id);
+        //Se redirecciona a la vista edit de la carpeta puesto y se le pasan los datos recopilados con la linea anterior
+        return view('puesto.edit', compact('puesto'));
     }
 
     /**
@@ -72,19 +76,29 @@ class PuestoController extends Controller
      * @param  \App\Models\Puesto  $puesto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Puesto $puesto)
+    public function update(Request $request, $id)
     {
         //
+        //Se almacenan los datos del request en $datos empleado sin incluir el token del @csrf ni el método que es PATCH
+        $datosPuesto = request()->except(['_token','_method']);
+        Puesto::where('id','=',$id)->update($datosPuesto);
+        //regresa a la vista empleado que por defecto muestra el index
+        return redirect('area');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Cambia el estado de 1(activo) a 0(inactivo) para simular su borrado, los datos siguen disponibles en la base de datos
      *
-     * @param  \App\Models\Puesto  $puesto
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Puesto $puesto)
+    public function destroy(Request $request, $id)
     {
         //
+        //Se almacenan los datos del request en $datos empleado sin incluir el token del @csrf ni el método que es PATCH
+        $datosPuesto = request()->except(['_token','_method']);
+        Puesto::where('id','=',$id)->update($datosPuesto);
+        //regresa a la vista empleado que por defecto muestra el index
+        return redirect('area');
     }
 }

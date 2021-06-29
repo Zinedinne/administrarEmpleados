@@ -124,7 +124,7 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Se almacenan los datos del reques en $datos empleado sin incluir el token del @csrf ni el método que es PATCH
+        //Se almacenan los datos del request en $datos empleado sin incluir el token del @csrf ni el método que es PATCH
         $datosEmpleado = request()->except(['_token','_method']);
 
         //Si se va a actualizar una foto, primero se elimina la foto anterior del storage
@@ -166,6 +166,13 @@ class EmpleadoController extends Controller
         return redirect('empleado');
     }
     */
+
+    /**
+     * Cambia el estado de 1(activo) a 0(inactivo) para simular su borrado, los datos siguen disponibles en la base de datos
+     *
+     * @param  \App\Models\Empleado  $empleado
+     * @return \Illuminate\Http\Response
+     */
 
     //EN VEZ DE BORRAR DIRECTAMENTE DE LA BASE DE DATOS SE CAMBIA SU ESTADO A INACTIVO
     public function destroy(Request $request, $id)
